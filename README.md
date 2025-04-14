@@ -2,7 +2,7 @@
 
 An interactive implementation of the famous cellular automaton created by British mathematician John Horton Conway, built with React and TypeScript.
 
-![Game of Life Screenshot](public/images/game-of-life-screenshot.png)
+![Game of Life Screenshot](public/game-of-life-screenshot.png)
 
 ## About the Game of Life
 
