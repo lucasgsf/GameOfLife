@@ -83,7 +83,6 @@ Conway's Game of Life is a zero-player cellular automaton that simulates the evo
 /public
   /images
     game-of-life-screenshot.png
-/babel.config.js       # Babel configuration for tests
 /jest.config.js        # Jest configuration
 /jest.setup.js         # Jest setup file
 ```

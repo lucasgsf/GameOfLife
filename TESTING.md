@@ -9,7 +9,7 @@ This document provides instructions for running and writing tests for the Game o
    The project uses Jest for testing along with React Testing Library for component tests. Install them with:
 
    ```bash
-   npm install --save-dev jest babel-jest @babel/preset-env @babel/preset-react @babel/preset-typescript @testing-library/react @testing-library/jest-dom identity-obj-proxy jest-environment-jsdom
+   npm install --save-dev jest ts-jest @types/jest
    ```
 
 2. **Configuration Files**
@@ -17,7 +17,6 @@ This document provides instructions for running and writing tests for the Game o
    The project includes several configuration files for testing:
 
    - `jest.config.js` - Jest configuration
-   - `babel.config.js` - Babel configuration for tests
    - `jest.setup.js` - Jest setup and extensions
 
 ## Test Structure
@@ -162,8 +161,9 @@ jest.mock('../../services/GameService', () => ({
 }));
 
 // Mocking a component
-jest.mock('../../components/BoardCell', () => {
-  return function MockBoardCell(props) {
+jest.mock('../../components/BoardCell', () => ({
+  __esModule: true,
+  default: function MockBoardCell(props) {
     return (
       <div 
         data-testid="board-cell" 
@@ -172,7 +172,7 @@ jest.mock('../../components/BoardCell', () => {
       />
     );
   };
-});
+}));
 
 // Mocking a hook
 jest.mock('../../hooks/useGameOfLife', () => ({
@@ -214,9 +214,7 @@ If you encounter issues with React imports in tests, ensure:
    import { memo } from 'react';  // Instead of React.memo
    ```
 
-2. The babel configuration is correct in `babel.config.js`
-
-3. Jest is configured to use the correct environment (jsdom)
+2. Jest is configured to use the correct environment (jsdom)
 
 ### Component Rendering Issues
 
