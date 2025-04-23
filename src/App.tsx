@@ -1,4 +1,4 @@
-import GameOfLife from './components/GameOfLife'
+import GameOfLife from './components/GameOfLife';
 
 function App() {
   return (

@@ -1,6 +1,6 @@
 import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import BoardControls from '../../components/BoardControls';
+import BoardControls from '.';
 
 describe('BoardControls', () => {
   const defaultProps = {

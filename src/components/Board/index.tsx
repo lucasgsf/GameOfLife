@@ -1,5 +1,5 @@
 import { memo } from "react";
-import BoardCell from "./BoardCell";
+import BoardCell from "../BoardCell";
 
 interface IBoardProps {
   board: boolean[][];

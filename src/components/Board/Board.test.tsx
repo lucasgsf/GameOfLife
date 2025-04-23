@@ -1,8 +1,8 @@
 import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Board from '../../components/Board';
+import Board from '.';
 
-jest.mock('../../components/BoardCell', () => ({
+jest.mock('../BoardCell', () => ({
   __esModule: true,
   default: function MockBoardCell({ isAlive, onClick }: { isAlive: boolean, onClick: () => void }) {
     return (

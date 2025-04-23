@@ -1,6 +1,6 @@
-import { BoardManager } from '../../services/BoardManager';
-import { GameOfLifeRules, IGameRules } from '../../services/GameRules';
-import { GameService } from '../../services/GameService';
+import { BoardManager } from '../BoardManager';
+import { GameOfLifeRules, IGameRules } from '../GameRules';
+import { GameService } from '.';
 
 class MockGameRules implements IGameRules {
   calculateNextState = jest.fn();

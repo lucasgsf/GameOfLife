@@ -1,6 +1,6 @@
-import Board from "./Board";
-import BoardControls from "./BoardControls";
-import { useGameOfLife } from "../hooks/useGameOfLife";
+import { useGameOfLife } from "@/hooks/useGameOfLife";
+import Board from "../Board";
+import BoardControls from "../BoardControls";
 
 export default function GameOfLife() {
   const {

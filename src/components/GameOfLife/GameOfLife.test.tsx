@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import GameOfLife from '../../components/GameOfLife';
-import { useGameOfLife } from '../../hooks/useGameOfLife';
+import GameOfLife from '.';
+import { useGameOfLife } from '@/hooks/useGameOfLife';
 
 jest.mock('../../hooks/useGameOfLife');
 
-jest.mock('../../components/Board', () => ({
+jest.mock('../Board', () => ({
   __esModule: true,
   default: function MockBoard({ board, onCellClick }: { board: boolean[][], onCellClick: any }) {
     return (

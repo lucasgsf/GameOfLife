@@ -1,4 +1,4 @@
-import { Board } from '../types/board';
+import { Board } from "@/types/board";
 
 export interface IBoardManager {
   initializeBoard(size: number): Board;

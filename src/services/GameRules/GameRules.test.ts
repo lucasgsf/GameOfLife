@@ -1,5 +1,5 @@
-import { BoardManager } from '../../services/BoardManager';
-import { GameOfLifeRules } from '../../services/GameRules';
+import { BoardManager } from '../BoardManager';
+import { GameOfLifeRules } from '.';
 
 describe('ConwayGameRules', () => {
   let boardManager: BoardManager;

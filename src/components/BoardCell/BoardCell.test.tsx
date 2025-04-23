@@ -1,6 +1,6 @@
 import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import BoardCell from '../../components/BoardCell';
+import BoardCell from '.';
 
 describe('BoardCell', () => {
   test('renders with correct className when cell is dead', () => {

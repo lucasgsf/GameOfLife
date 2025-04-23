@@ -1,6 +1,6 @@
 import { renderHook, act } from '@testing-library/react';
-import { useGameOfLife } from '../../hooks/useGameOfLife';
-import { gameService } from '../../services/GameService';
+import { useGameOfLife } from '.';
+import { gameService } from '@/services/GameService';
 
 jest.mock('../../services/GameService', () => ({
   gameService: {

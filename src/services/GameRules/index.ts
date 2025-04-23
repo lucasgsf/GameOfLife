@@ -1,5 +1,5 @@
-import { Board, NEIGHBORS_DIRECTIONS } from '../types/board';
-import { boardManager, BoardManager } from './BoardManager';
+import { Board, NEIGHBORS_DIRECTIONS } from '@/types/board';
+import { boardManager, BoardManager } from '../BoardManager';
 
 export interface IGameRules {
   calculateNextState(board: Board): Board;

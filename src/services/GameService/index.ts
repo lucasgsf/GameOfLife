@@ -1,6 +1,6 @@
-import { Board } from '../types/board';
-import { boardManager, BoardManager } from './BoardManager';
-import { GameOfLifeRules, IGameRules } from './GameRules';
+import { Board } from '@/types/board';
+import { boardManager, BoardManager } from '../BoardManager';
+import { GameOfLifeRules, IGameRules } from '../GameRules';
 
 export interface IGameService {
   initializeBoard(size: number): Board;

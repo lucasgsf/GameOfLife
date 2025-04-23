@@ -1,6 +1,6 @@
+import { gameService } from '@/services/GameService';
+import { Board } from '@/types/board';
 import { useState, useCallback, useRef, useEffect } from 'react';
-import { gameService } from '../services/GameService';
-import { Board } from '../types/board';
 
 export interface GameOfLifeConfig {
   initialSize?: number;

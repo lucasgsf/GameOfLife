@@ -1,4 +1,4 @@
-import { BoardManager } from '../../services/BoardManager';
+import { BoardManager } from '.';
 
 describe('BoardManager', () => {
   let boardManager: BoardManager;

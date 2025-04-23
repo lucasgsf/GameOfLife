@@ -2,7 +2,11 @@
 export default {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
-  testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
+  testMatch: [
+    '**/__tests__/**/*.ts?(x)',
+    '**/?(*.)+(spec|test).ts?(x)',
+    '**/src/**/*.test.ts?(x)'
+  ],
   setupFilesAfterEnv: ['./jest.setup.js'],
   transform: {
     '^.+\\.tsx?$': [
@@ -14,11 +18,8 @@ export default {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   moduleNameMapper: {
-    '\\.(css|less|scss|sass)$': 'identity-obj-proxy'
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
+    '^@/(.*)$': '<rootDir>/src/$1'
   },
-  globals: {
-    'ts-jest': {
-      isolatedModules: true
-    }
-  }
-};
+  modulePaths: ['<rootDir>/src']
+}
