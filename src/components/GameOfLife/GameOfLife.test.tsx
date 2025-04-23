@@ -7,7 +7,7 @@ jest.mock('../../hooks/useGameOfLife');
 
 jest.mock('../Board', () => ({
   __esModule: true,
-  default: function MockBoard({ board, onCellClick }: { board: boolean[][], onCellClick: any }) {
+  default: function MockBoard({ board, onCellClick }: { board: boolean[][], onCellClick: (row: number, col: number) => void }) {
     return (
       <div data-testid="board" data-board-size={board.length}>
         {/* Render a button to test cell click */}
@@ -28,7 +28,14 @@ jest.mock('../../components/BoardControls', () => ({
     onStopPlayingForever,
     onReset,
     isPlayingForever
-  }: any) {
+  }: { 
+    onNext: () => void,
+    onAdvance: (steps: number) => void,
+    onPlayForever: () => void,
+    onStopPlayingForever: () => void,
+    onReset: () => void,
+    isPlayingForever: boolean
+  }) {
     return (
       <div data-testid="board-controls" data-playing={isPlayingForever ? 'true' : 'false'}>
         <button onClick={onNext} data-testid="next-button">Next</button>
