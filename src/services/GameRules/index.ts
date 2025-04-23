@@ -1,8 +1,24 @@
 import { Board, NEIGHBORS_DIRECTIONS } from '@/types/board';
 import { boardManager, BoardManager } from '../BoardManager';
 
+/**
+ * Interface defining the rules engine for Conway's Game of Life.
+ */
 export interface IGameRules {
+  /**
+   * Calculates the next state of the board based on Conway's Game of Life rules.
+   * @param board - The current state of the game board
+   * @returns A new board representing the next generation
+   */
   calculateNextState(board: Board): Board;
+
+  /**
+   * Counts the number of live neighbors for a given cell.
+   * @param board - The game board
+   * @param row - The row index of the cell
+   * @param col - The column index of the cell
+   * @returns The number of live neighbors (0-8)
+   */
   countLiveNeighbors(board: Board, row: number, col: number): number;
 }
 
