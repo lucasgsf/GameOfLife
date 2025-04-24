@@ -104,10 +104,14 @@ Conway's Game of Life is a zero-player cellular automaton that simulates the evo
 
 ### Architecture
 
-- **SOLID Principles**: Application of single responsibility, open-closed, and dependency inversion principles
-- **Separation of Concerns**: Game logic separated into services to facilitate maintenance and testing
-- **Reusable Components**: Each UI element is an independent React component
-- **Immutability**: All operations on the board return new copies instead of modifying the original state
+For detailed information about the project's architecture, design decisions, and extensibility considerations, see [ARCHITECTURE.md](ARCHITECTURE.md).
+
+This document includes:
+- Component architecture diagrams
+- Service layer design
+- Data flow diagrams
+- Design decisions and rationale
+- Extensibility considerations
 
 ### Performance Optimizations
 
