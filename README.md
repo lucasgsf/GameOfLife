@@ -150,3 +150,15 @@ For more detailed testing information, see [TESTING.md](TESTING.md).
 - **Infinite Board**: Implement a board that expands or has wrap-around at the edges
 - **State History**: Allow going back and forth through the history of generations
 - **Statistics**: Show statistics such as total population, growth rate, etc.
+
+## Contributing
+
+We welcome contributions to the Game of Life project! Please see our [Contributing Guide](CONTRIBUTING.md) for details on:
+
+- Branching strategy
+- Commit message conventions
+- Pull request process
+- Development setup
+- Code style guidelines
+
+Before making any changes, please read our contribution guidelines to ensure a smooth collaboration process.
