@@ -8,6 +8,11 @@
     "noEmit": true,
     "isolatedModules": true
   },
-  "include": ["src", "tests", "jest.setup.js", "jest.config.js"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx"
+  ],
   "exclude": ["node_modules"]
 }
