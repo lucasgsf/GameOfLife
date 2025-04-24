@@ -56,7 +56,7 @@ export function useGameOfLife(config: GameOfLifeConfig = {}): GameOfLifeState {
     gameService.initializeBoard(size)
   );
   
-  const playIntervalRef = useRef<number | null>(null);
+  const playIntervalRef = useRef<NodeJS.Timeout | null>(null);
   
   useEffect(() => {
     return () => {
