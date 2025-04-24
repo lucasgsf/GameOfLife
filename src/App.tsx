@@ -1,9 +1,14 @@
-import GameOfLife from './components/GameOfLife';
+import { Suspense, lazy } from 'react';
+import LoadingSpinner from './components/LoadingSpinner';
+
+const GameOfLife = lazy(() => import('./components/GameOfLife'));
 
 function App() {
   return (
-    <GameOfLife />
-  )
+    <Suspense fallback={<LoadingSpinner />}>
+      <GameOfLife />
+    </Suspense>
+  );
 }
 
-export default App
+export default App;
