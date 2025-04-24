@@ -1,28 +1,30 @@
-import { BoardManager } from '../BoardManager';
-import { GameOfLifeRules, IGameRules } from '../GameRules';
+import { GameOfLifeRules } from '../GameRules';
 import { GameService } from '.';
-
-class MockGameRules implements IGameRules {
-  calculateNextState = jest.fn();
-  countLiveNeighbors = jest.fn();
-}
+import { createMockBoardManager, createMockGameRules } from '@/tests/mocks/ServiceMocks';
+import { BoardFactory } from '@/tests/factories/BoardFactory';
 
 describe('GameService', () => {
-  let boardManager: BoardManager;
-  let mockGameRules: MockGameRules;
+  const mockBoardManager = createMockBoardManager();
+  const mockGameRules = createMockGameRules();
   let gameService: GameService;
 
   beforeEach(() => {
-    boardManager = new BoardManager();
-    mockGameRules = new MockGameRules();
-    gameService = new GameService(boardManager, mockGameRules);
-    
     jest.clearAllMocks();
+
+    gameService = new GameService(mockBoardManager, mockGameRules);
+
+    mockBoardManager.initializeBoard.mockImplementation((size: number) => 
+      BoardFactory.createEmpty(size)
+    );
+    mockBoardManager.cloneBoard.mockImplementation(board => board.map(row => [...row]));
+    mockBoardManager.isWithinBounds.mockImplementation((board, row, col) => 
+      row >= 0 && col >= 0 && row < board.length && col < board[0].length
+    );
   });
 
   describe('initializeBoard', () => {
     it('should delegate to BoardManager', () => {
-      const spy = jest.spyOn(boardManager, 'initializeBoard');
+      const spy = jest.spyOn(mockBoardManager, 'initializeBoard');
       const size = 5;
       
       gameService.initializeBoard(size);
@@ -33,8 +35,8 @@ describe('GameService', () => {
 
   describe('toggleCell', () => {
     it('should delegate to BoardManager', () => {
-      const spy = jest.spyOn(boardManager, 'toggleCell');
-      const board = boardManager.initializeBoard(3);
+      const spy = jest.spyOn(mockBoardManager, 'toggleCell');
+      const board = mockBoardManager.initializeBoard(3);
       const row = 1;
       const col = 1;
       
@@ -46,7 +48,7 @@ describe('GameService', () => {
 
   describe('calculateNextState', () => {
     it('should delegate to GameRules', () => {
-      const board = boardManager.initializeBoard(3);
+      const board = mockBoardManager.initializeBoard(3);
       
       gameService.calculateNextState(board);
       
@@ -56,7 +58,7 @@ describe('GameService', () => {
 
   describe('calculateStates', () => {
     it('should return original board if steps <= 0', () => {
-      const board = boardManager.initializeBoard(3);
+      const board = mockBoardManager.initializeBoard(3);
       
       const result = gameService.calculateStates(board, 0);
       
@@ -65,16 +67,16 @@ describe('GameService', () => {
     });
 
     it('should calculate multiple generations correctly', () => {
-      const board = boardManager.initializeBoard(3);
+      const board = mockBoardManager.initializeBoard(3);
       const steps = 3;
       
-      const board1 = boardManager.initializeBoard(3);
+      const board1 = mockBoardManager.initializeBoard(3);
       board1[0][0] = true;
       
-      const board2 = boardManager.initializeBoard(3);
+      const board2 = mockBoardManager.initializeBoard(3);
       board2[1][1] = true;
       
-      const board3 = boardManager.initializeBoard(3);
+      const board3 = mockBoardManager.initializeBoard(3);
       board3[2][2] = true;
       
       mockGameRules.calculateNextState
@@ -93,12 +95,12 @@ describe('GameService', () => {
     let realGameService: GameService;
     
     beforeEach(() => {
-      const realGameRules = new GameOfLifeRules(boardManager);
-      realGameService = new GameService(boardManager, realGameRules);
+      const realGameRules = new GameOfLifeRules(mockBoardManager);
+      realGameService = new GameService(mockBoardManager, realGameRules);
     });
     
     it('should correctly advance a blinker pattern by multiple steps', () => {
-      const board = boardManager.initializeBoard(5);
+      const board = mockBoardManager.initializeBoard(5);
       board[2][1] = true;
       board[2][2] = true;
       board[2][3] = true;

@@ -5,13 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "preview": "vite preview",
     "build": "tsc -b && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
+    "lint:fix": "eslint src --ext ts,tsx --fix",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "lint:fix": "eslint src --ext ts,tsx --fix"
+    "test:ci": "jest --ci --coverage"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.3",

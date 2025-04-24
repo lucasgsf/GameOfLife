@@ -14,6 +14,7 @@ jest.mock('../../services/GameService', () => ({
 describe('useGameOfLife', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    global.clearInterval = jest.fn();
     
     (gameService.initializeBoard as jest.Mock).mockReturnValue([
       [false, false],
@@ -42,6 +43,7 @@ describe('useGameOfLife', () => {
   });
 
   afterEach(() => {
+    jest.clearAllTimers();
     jest.useRealTimers();
   });
 
@@ -210,5 +212,32 @@ describe('useGameOfLife', () => {
     unmount();
     
     expect(clearIntervalSpy).toHaveBeenCalled();
+  });
+
+  test('handlePlayForever clears existing interval when called multiple times', () => {
+    const clearIntervalSpy = jest.spyOn(window, 'clearInterval');
+    const { result } = renderHook(() => useGameOfLife());
+    
+    act(() => {
+      result.current.handlePlayForever();
+    });
+    
+    expect(result.current.isPlayingForever).toBe(true);
+    
+    act(() => {
+      result.current.handlePlayForever();
+    });
+    
+    expect(clearIntervalSpy).toHaveBeenCalled();
+    expect(result.current.isPlayingForever).toBe(true);
+    
+    act(() => {
+      jest.advanceTimersByTime(200);
+    });
+    
+    expect(gameService.calculateNextState).toHaveBeenCalled();
+    expect(result.current.generation).toBe(1);
+    
+    clearIntervalSpy.mockRestore();
   });
 });

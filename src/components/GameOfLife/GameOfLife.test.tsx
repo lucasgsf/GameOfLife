@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import GameOfLife from '.';
 import { useGameOfLife } from '@/hooks/useGameOfLife';
+import { HookMockFactory } from '@/tests/mocks/HookMockFactory';
 
 jest.mock('../../hooks/useGameOfLife');
 
@@ -50,17 +51,7 @@ jest.mock('../../components/BoardControls', () => ({
 
 describe('GameOfLife', () => {
   // Set up mock implementation of useGameOfLife
-  const mockGameHook = {
-    board: [[false, false], [false, false]],
-    generation: 5,
-    isPlayingForever: false,
-    handleCellClick: jest.fn(),
-    handleNext: jest.fn(),
-    handleAdvance: jest.fn(),
-    handlePlayForever: jest.fn(),
-    handleStopPlayingForever: jest.fn(),
-    handleReset: jest.fn(),
-  };
+  const mockGameHook = HookMockFactory.createGameOfLifeHookMock();
 
   beforeEach(() => {
     jest.clearAllMocks();

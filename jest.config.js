@@ -8,6 +8,9 @@ export default {
     '**/src/**/*.test.ts?(x)'
   ],
   setupFilesAfterEnv: ['./jest.setup.js'],
+  fakeTimers: {
+    enableGlobally: true
+  },
   transform: {
     '^.+\\.tsx?$': [
       'ts-jest',
@@ -21,5 +24,23 @@ export default {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
     '^@/(.*)$': '<rootDir>/src/$1'
   },
-  modulePaths: ['<rootDir>/src']
+  modulePaths: ['<rootDir>/src'],
+  // Add coverage configuration
+  collectCoverage: true,
+  coverageDirectory: 'coverage',
+  coverageReporters: ['text', 'lcov', 'clover', 'html'],
+  coverageThreshold: {
+    global: {
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: 80
+    }
+  },
+  testPathIgnorePatterns: [
+    '/node_modules/', 
+    '/src/tests/',
+    '/src/tests/factories/',
+    '/src/tests/mocks/'
+  ]
 }

@@ -1,16 +1,10 @@
 import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import BoardControls from '.';
+import { ComponentPropsFactory } from '@/tests/factories/ComponentPropsFactory';
 
 describe('BoardControls', () => {
-  const defaultProps = {
-    onNext: jest.fn(),
-    onAdvance: jest.fn(),
-    onPlayForever: jest.fn(),
-    onStopPlayingForever: jest.fn(),
-    onReset: jest.fn(),
-    isPlayingForever: false
-  };
+  const defaultProps = ComponentPropsFactory.createBoardControlsProps();
 
   beforeEach(() => {
     jest.clearAllMocks();

@@ -1,6 +1,7 @@
 import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Board from '.';
+import { ComponentPropsFactory } from '@/tests/factories/ComponentPropsFactory';
 
 jest.mock('../BoardCell', () => ({
   __esModule: true,
@@ -17,14 +18,8 @@ jest.mock('../BoardCell', () => ({
 
 describe('Board', () => {
   test('renders the correct number of cells based on board size', () => {
-    const board = [
-      [false, false, false],
-      [false, true, false],
-      [false, false, false]
-    ];
-    const handleCellClick = jest.fn();
-    
-    render(<Board board={board} onCellClick={handleCellClick} />);
+    const props = ComponentPropsFactory.createBoardProps(3);
+    render(<Board {...props} />);
     
     const cells = screen.getAllByTestId('board-cell');
     expect(cells).toHaveLength(9);
@@ -81,10 +76,8 @@ describe('Board', () => {
   });
 
   test('renders an empty board when given an empty array', () => {
-    const board: boolean[][] = [];
-    const handleCellClick = jest.fn();
-    
-    render(<Board board={board} onCellClick={handleCellClick} />);
+    const props = ComponentPropsFactory.createBoardProps(0);
+    render(<Board {...props} />);
     
     const cells = screen.queryAllByTestId('board-cell');
     expect(cells).toHaveLength(0);
